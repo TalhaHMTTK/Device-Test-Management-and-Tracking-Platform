@@ -1,0 +1,11 @@
+This is index page
+
+<% @users.each do |user| %>
+  <p>Name: <%= user.email.split('@')[0] %></p>
+  <p>Role: <%= user.role %></p>
+  <p>Address: <%= user.address %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= button_to "sign Out", destroy_user_session_path, method: :delete %>
+<%end%>
