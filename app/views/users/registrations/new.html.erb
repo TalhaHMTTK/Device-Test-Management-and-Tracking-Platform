@@ -31,6 +31,20 @@
     <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
   </div>
 
+  <div>
+    <p>Company Details</p>
+    <%= f.fields_for :company do |company_fields| %>
+      <div class="field">
+        <%= company_fields.label :name, "Company Name" %>
+        <%= company_fields.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= company_fields.label :contact, "Contact Details" %>
+        <%= company_fields.text_field :contact %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
