@@ -12,7 +12,7 @@
 
   <div>
     <%= f.label :role, class: 'form-label' %>
-    <%= f.select :role, options_for_select([['Tester', 'tester'], ['Admin', 'admin']]), { prompt: 'Select Role' } %>
+    <%= f.select :role, options_for_select(User.roles.keys.map { |k| [k.capitalize, k] }, resource.role) %>     
   </div>
 
   <div>
