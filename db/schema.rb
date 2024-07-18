@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_18_051845) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_18_075940) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,52 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_18_051845) do
     t.string "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_customers_on_company_id"
+    t.index ["user_id"], name: "index_customers_on_user_id"
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "name"
+    t.string "company_name"
+    t.integer "model"
+    t.bigint "location_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_devices_on_company_id"
+    t.index ["location_id"], name: "index_devices_on_location_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.bigint "customer_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_locations_on_company_id"
+    t.index ["customer_id"], name: "index_locations_on_customer_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.integer "status", default: 0
+    t.string "result", default: "Pending"
+    t.bigint "device_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_tests_on_company_id"
+    t.index ["device_id"], name: "index_tests_on_device_id"
   end
 
   create_table "users", force: :cascade do |t|
