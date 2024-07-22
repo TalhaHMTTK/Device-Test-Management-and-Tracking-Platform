@@ -10,6 +10,11 @@ class Users::InvitationsController < Devise::InvitationsController
     super
   end
 
+  def update
+    super
+    UserMailer.welcome_email(@user).deliver_now
+  end
+  
   protected
 
   def configure_permitted_parameters
