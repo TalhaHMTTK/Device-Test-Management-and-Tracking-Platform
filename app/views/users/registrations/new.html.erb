@@ -22,11 +22,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :role, class: 'form-label' %>
-    <%= f.select :role, options_for_select(User.roles.keys.map { |k| [k.capitalize, k] }, resource.role) %>     
-  </div>
-
-  <div class="field">
     <%= f.label :address, class: 'form-label' %>
     <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
   </div>
