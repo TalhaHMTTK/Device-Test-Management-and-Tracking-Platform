@@ -7,4 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { tester: 0, admin: 1 }
+
+  accepts_nested_attributes_for :company
 end
