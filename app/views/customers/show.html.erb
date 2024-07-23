@@ -1,0 +1,11 @@
+<h3>Customer Info</h3>
+<p>ID: <%= @customer.id %></p>
+<p>Customer Name:<%= @customer.name %></p>
+<p>Phone: <%= @customer.phone %></p>
+<p><%= @customer.address %></p>
+<p>Joining Date: <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
+<p>Last Info Updated: <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
+
+<p><%= link_to 'Edit Customer', edit_customer_path(@customer) %></p>
+<p><%= button_to 'Delete', customer_path(@customer), method: :delete %></p>
+<p><%= link_to 'All Customers', customers_path %></p>

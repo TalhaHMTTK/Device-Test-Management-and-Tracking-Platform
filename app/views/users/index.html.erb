@@ -4,6 +4,7 @@ This is index page
   <p>Name: <%= user.email.split('@')[0] %></p>
   <p>Role: <%= user.role %></p>
   <p>Address: <%= user.address %></p>
+  <p><%= link_to "View", user_path(user) %></p>
 <% end %>
 
 <% if user_signed_in? %>

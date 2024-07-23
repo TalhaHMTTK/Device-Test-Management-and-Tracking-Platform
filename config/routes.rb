@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     invitations: 'users/invitations'
   }
   resources :companies
+  resources :customers
+  resources :users
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "users#index"
