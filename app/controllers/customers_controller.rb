@@ -12,7 +12,9 @@ class CustomersController < ApplicationController
     redirect_to @customer
   end
 
-  def show; end
+  def show
+    @locations = @customer.locations
+  end
 
   def edit; end
 
