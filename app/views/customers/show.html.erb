@@ -1,11 +1,47 @@
+<button type="button"><%= link_to 'Back', customers_path %></button>
 <h3>Customer Info</h3>
 <p>ID: <%= @customer.id %></p>
 <p>Customer Name:<%= @customer.name %></p>
 <p>Phone: <%= @customer.phone %></p>
 <p><%= @customer.address %></p>
 <p>Joining Date: <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
-<p>Last Info Updated: <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
 
 <p><%= link_to 'Edit Customer', edit_customer_path(@customer) %></p>
 <p><%= button_to 'Delete', customer_path(@customer), method: :delete %></p>
-<p><%= link_to 'All Customers', customers_path %></p>
+
+<h4>Customer's Locations</h4>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Link_1
+    </th>
+    <th>
+      Link_2
+    </th>
+    <th>
+      Link_3
+    </th>
+  </tr>
+  <tbody>
+    <% @customer.locations.each do |location| %>
+      <tr>
+        <td>
+          <%= location.name %>
+        </td>
+        <td>
+          <%= link_to 'View', location_path(location) %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_location_path(location) %>
+        </td>
+        <td>
+          <%= button_to 'Delete', location_path(location), method: :delete %>
+        </td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>
+<%= link_to 'Add Location', new_location_path(customer_id: @customer.id) %>

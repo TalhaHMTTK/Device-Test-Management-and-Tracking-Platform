@@ -56,13 +56,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_22_074700) do
   create_table "tests", force: :cascade do |t|
     t.string "name"
     t.integer "status", default: 0
-    t.string "result", default: "Pending"
+    t.integer "result", default: 0
     t.bigint "device_id"
     t.bigint "company_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_tests_on_company_id"
     t.index ["device_id"], name: "index_tests_on_device_id"
+    t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
