@@ -1,4 +1,6 @@
 class Device < ApplicationRecord
+  include Tenantable
+
   belongs_to :location
   belongs_to :company
   has_many :tests

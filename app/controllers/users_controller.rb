@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
-    @users = current_user.company.users
+    @users = User.all
   end
 
   def show; end
