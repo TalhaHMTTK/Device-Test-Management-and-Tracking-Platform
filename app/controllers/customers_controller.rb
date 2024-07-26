@@ -8,8 +8,12 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
-    redirect_to @customer
+    if @customer.save
+      respond_to do |format|
+        format.html { redirect_to @customer }
+        format.turbo_stream
+      end
+    end
   end
 
   def show
@@ -19,8 +23,12 @@ class CustomersController < ApplicationController
   def edit; end
 
   def update
-    @customer.update(customer_params)
-    redirect_to @customer
+    if @customer.update(customer_params)
+      respond_to do |format|
+        format.html { redirect_to @customer }
+        format.turbo_stream
+      end
+    end
   end
 
   def index
