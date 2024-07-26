@@ -11,50 +11,24 @@
 <p><%= button_to 'Delete', device_path(@device), method: :delete %></p>
 
 <h4>Tests on <%= @device.name %></h4>
+
 <table>
-  <tr>
-    <th>
-      Name
-    </th>
-    <th>
-      Status
-    </th>
-    <th>
-      Result
-    </th>
-    <th>
-      Link_1
-    </th>
-    <th>
-      Link_2
-    </th>
-    <th>
-      Link_3
-    </th>
-  </tr>
-  <tbody>
-    <% @tests.each do |test| %>
-      <tr>
-        <td>
-          <%= test.name %>
-        </td>
-        <td>
-          <%= test.status %>
-        </td>
-        <td>
-          <%= test.result %>
-        </td>
-        <td>
-          <%= link_to 'View', test_path(test) %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_test_path(test) %>
-        </td>
-        <td>
-          <%= button_to 'Delete', test_path(test), method: :delete %>
-        </td>
-      </tr>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Result</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="tests">
+    <%= render @device.tests %>
   </tbody>
-  <% end %>
 </table>
-<%= link_to 'Add Test', new_test_path(device_id: @device.id) %>
+
+<%= turbo_frame_tag "new_test" do %>
+  <%= link_to 'Add Test', new_test_path(device_id: @device.id) %>
+<% end %>
+
+<%= turbo_frame_tag 'edit_test' %>

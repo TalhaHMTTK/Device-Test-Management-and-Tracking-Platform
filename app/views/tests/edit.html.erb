@@ -1,23 +1,4 @@
-<h3>Edit Test</h3>
-
-<%= form_with(model: @test, local: true) do |form| %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, options_for_select(Test.statuses.keys.map { |k| [k.humanize.capitalize, k] }, @test.status )%>
-  </div>
-
-  <div class="field">
-    <%= form.label :result %>
-    <%= form.select :result, options_for_select(Test.results.keys.map { |k| [k.capitalize, k] }, @test.result ) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Update" %>
-  </div>
+<%= turbo_frame_tag "edit_test" do %>
+  <h3>Edit Test</h3>
+  <%= render 'form', test: @test %>
 <% end %>

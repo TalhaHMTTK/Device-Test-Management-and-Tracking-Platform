@@ -3,13 +3,18 @@ class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
 
   def new
-    @test = Test.new
+    @test = Test.new(device_id: params[:device_id])
   end
 
   def create
     @test = Test.new(test_params)
-    @test.save
-    redirect_to device_path(@test.device)
+    @device = @test.device
+    if @test.save
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render locals: { :'@device' => @device }}
+      end
+    end
   end
 
   def show; end
@@ -17,8 +22,12 @@ class TestsController < ApplicationController
   def edit; end
 
   def update
-    @test.update(test_params)
-    redirect_to device_path(@test.device)
+    if @test.update(test_params)
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    end
   end
 
   def destroy

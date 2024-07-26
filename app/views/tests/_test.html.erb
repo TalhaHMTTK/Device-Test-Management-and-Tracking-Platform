@@ -1,0 +1,11 @@
+<tr id="test_<%= test.id %>">
+  <td><%= test.id %></td>
+  <td><%= test.name %></td>
+  <td><%= test.status %></td>
+  <td><%= test.result %></td>
+  <td>
+    <%= link_to 'Show', test %>
+    <%= link_to 'Edit', edit_test_path(test), data: { turbo_frame: 'edit_test' } %>
+    <%= link_to 'Destroy', test, data: { turbo_method: :delete } %>
+  </td>
+</tr>

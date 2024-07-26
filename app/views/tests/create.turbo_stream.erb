@@ -1,0 +1,2 @@
+<%= turbo_stream.append 'tests', partial: 'tests/test', locals: { test: @test } %>
+<%= turbo_stream.replace 'new_test', partial: 'tests/create_link', locals: { :'@device' => @device } %>
