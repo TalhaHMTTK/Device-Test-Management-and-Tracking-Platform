@@ -3,13 +3,18 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   def new
-    @device = Device.new
+    @device = Device.new(location_id: params[:location_id])
   end
 
   def create
     @device = Device.new(device_params)
-    @device.save
-    redirect_to location_path(@device.location)
+    @location = @device.location
+    if @device.save
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render locals: { :'@location' => @location }}
+      end
+    end
   end
 
   def show; end
@@ -17,8 +22,12 @@ class DevicesController < ApplicationController
   def edit; end
 
   def update
-    @device.update(device_params)
-    redirect_to location_path(@device.location)
+    if @device.update(device_params)
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    end
   end
 
   def destroy
