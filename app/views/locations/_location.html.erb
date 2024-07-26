@@ -1,0 +1,9 @@
+<tr id="location_<%= location.id %>">
+  <td><%= location.id %></td>
+  <td><%= location.name %></td>
+  <td>
+    <%= link_to "View", location %>
+    <%= link_to "Edit", edit_location_path(location.id), data: { turbo_frame: 'edit_location' } %>
+    <%= link_to "Delete", location, data: { turbo_method: :delete } %>
+  </td>
+</tr>

@@ -3,13 +3,18 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def new
-    @location = Location.new
+    @location = Location.new(customer_id: params[:customer_id])
   end
 
   def create
     @location = Location.new(location_params)
-    @location.save
-    redirect_to customer_path(@location.customer)
+    @customer = @location.customer
+    if @location.save
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render locals: { :'@customer' => @customer } }
+      end
+    end
   end
 
   def show; end
@@ -17,8 +22,12 @@ class LocationsController < ApplicationController
   def edit; end
 
   def update
-    @location.update(location_params)
-    redirect_to customer_path(@location.customer)
+    if @location.update(location_params)
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    end
   end
 
   def destroy

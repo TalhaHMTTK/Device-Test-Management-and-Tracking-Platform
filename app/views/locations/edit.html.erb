@@ -1,13 +1,4 @@
-<h3>Edit Location</h3>
-
-<%= form_with(model: @location, local: true) do |form| %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Create Customer" %>
-  </div>
+<%= turbo_frame_tag "edit_location" do %>
+  <h3>Edit Location</h3>
+  <%= render 'form', location: @location %>
 <% end %>
