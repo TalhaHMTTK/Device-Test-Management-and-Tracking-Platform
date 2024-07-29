@@ -1,0 +1,32 @@
+<h2>All Users of all Companies</h2>
+
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Role
+    </th>
+    <th>
+      Address
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+  <% @users.each do |user| %>
+    <tbody>
+      <tr>
+        <td><%= user.email.split('@')[0] %></td>
+        <td><%= user.role %></td>
+        <td><%= user.address %></td>
+        <td><%= button_to 'emulate', impersonate_user_path(user), data: {turbo: false} %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<% if user_signed_in? %>
+  <%= button_to "sign Out", destroy_user_session_path, method: :delete %>
+<%end%>
