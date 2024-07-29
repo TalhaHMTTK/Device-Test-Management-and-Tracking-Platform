@@ -1,0 +1,60 @@
+<button type="button"><%= link_to 'Back', location_path(@device.location) %></button>
+<h3>Device Info</h3>
+<p>ID: <%= @device.id %></p>
+<p>Name:<%= @device.name %></p>
+<p>Model: <%= @device.model %></p>
+<p>Manufacturer<%= @device.manufacturer %></p>
+<p>Installation Date: <%= @device.created_at.strftime("%B %d, %Y %H:%M") %></p>
+<p>Service Date: <%= @device.updated_at.strftime("%B %d, %Y %H:%M") %></p>
+
+<p><%= link_to 'Edit Device', edit_device_path(@device) %></p>
+<p><%= button_to 'Delete', device_path(@device), method: :delete %></p>
+
+<h4>Tests on <%= @device.name %></h4>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+      Result
+    </th>
+    <th>
+      Link_1
+    </th>
+    <th>
+      Link_2
+    </th>
+    <th>
+      Link_3
+    </th>
+  </tr>
+  <tbody>
+    <% @device.tests.each do |test| %>
+      <tr>
+        <td>
+          <%= test.name %>
+        </td>
+        <td>
+          <%= test.status %>
+        </td>
+        <td>
+          <%= test.result %>
+        </td>
+        <td>
+          <%= link_to 'View', test_path(test) %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_test_path(test) %>
+        </td>
+        <td>
+          <%= button_to 'Delete', test_path(test), method: :delete %>
+        </td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>
+<%= link_to 'Add Test', new_test_path(device_id: @device.id) %>

@@ -1,0 +1,11 @@
+<button type="button"><%= link_to 'Back', device_path(@test.device) %></button>
+<h3>Test Info</h3>
+<p>ID: <%= @test.id %></p>
+<p>Name:<%= @test.name %></p>
+<p>Model: <%= @test.status %></p>
+<p>Manufacturer<%= @test.result %></p>
+<p>Creation Date: <%= @test.created_at.strftime("%B %d, %Y %H:%M") %></p>
+<p>Updation Date: <%= @test.updated_at.strftime("%B %d, %Y %H:%M") %></p>
+
+<p><%= link_to 'Edit Test', edit_test_path(@test) %></p>
+<p><%= button_to 'Delete', device_path(@test), method: :delete %></p>
