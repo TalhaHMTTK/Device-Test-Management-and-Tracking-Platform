@@ -7,8 +7,11 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    @location.save
-    redirect_to customer_path(@location.customer)
+    if @location.save
+      redirect_to customer_path(@location.customer)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show; end
@@ -16,8 +19,11 @@ class LocationsController < ApplicationController
   def edit; end
 
   def update
-    @location.update(location_params)
-    redirect_to customer_path(@location.customer)
+    if @location.update(location_params)
+      redirect_to customer_path(@location.customer)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

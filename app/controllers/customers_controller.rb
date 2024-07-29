@@ -8,8 +8,11 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
-    redirect_to @customer
+    if @customer.save
+      redirect_to @customer
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show; end
@@ -17,8 +20,11 @@ class CustomersController < ApplicationController
   def edit; end
 
   def update
-    @customer.update(customer_params)
-    redirect_to @customer
+    if @customer.update(customer_params)
+      redirect_to @customer
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def index

@@ -5,4 +5,6 @@ class Test < ApplicationRecord
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2 }
   enum :result, { pass: 0, fail: 1 }
+
+  validates :name, presence: true, length: { minimum: 3 }
 end

@@ -7,8 +7,11 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.new(test_params)
-    @test.save
-    redirect_to device_path(@test.device)
+    if @test.save
+      redirect_to device_path(@test.device)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show; end
@@ -16,8 +19,11 @@ class TestsController < ApplicationController
   def edit; end
 
   def update
-    @test.update(test_params)
-    redirect_to device_path(@test.device)
+    if @test.update(test_params)
+      redirect_to device_path(@test.device)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

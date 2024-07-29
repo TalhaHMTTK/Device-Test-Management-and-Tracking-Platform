@@ -2,6 +2,8 @@
 
 <%= form_with(model: @customer, local: true) do |form| %>
 
+  <%= render 'shared/errors', object: @customer %>
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>

@@ -7,8 +7,11 @@ class DevicesController < ApplicationController
 
   def create
     @device = Device.new(device_params)
-    @device.save
-    redirect_to location_path(@device.location)
+    if @device.save
+      redirect_to location_path(@device.location)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show; end
@@ -16,8 +19,11 @@ class DevicesController < ApplicationController
   def edit; end
 
   def update
-    @device.update(device_params)
-    redirect_to location_path(@device.location)
+    if @device.update(device_params)
+      redirect_to location_path(@device.location)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
