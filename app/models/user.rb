@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Tenantable
+
   belongs_to :company
   has_many :tests
 

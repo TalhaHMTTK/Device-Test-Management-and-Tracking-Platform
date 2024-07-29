@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = current_user.company.customers
+    @customers = Customer.all
   end
 
   def destroy

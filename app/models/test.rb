@@ -1,4 +1,6 @@
 class Test < ApplicationRecord
+  include Tenantable
+
   belongs_to :device
   belongs_to :company
   belongs_to :user
