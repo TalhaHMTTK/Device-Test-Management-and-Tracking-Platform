@@ -5,6 +5,19 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def impersonate
+    ActsAsTenant.without_tenant do
+      user = User.find(params[:id])
+      impersonate_user(user)
+      redirect_to root_path
+    end
+  end
+
+  def stop_impersonating
+    stop_impersonating_user
+    redirect_to super_admin_all_users_path
+  end
+
   def show; end
 
   def edit; end

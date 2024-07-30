@@ -6,6 +6,16 @@ Rails.application.routes.draw do
   resources :companies
   resources :customers
   resources :users
+
+  namespace :super_admin do
+    get 'all_users', to: 'users#all_users'
+  end
+
+  resources :users, only: [:index] do
+    post :impersonate, on: :member
+    post :stop_impersonating, on: :collection
+  end
+
   resources :locations
   resources :devices
   resources :tests
