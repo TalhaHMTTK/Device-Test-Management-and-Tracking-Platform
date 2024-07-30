@@ -11,37 +11,20 @@
 
 <h4>Customer's Locations</h4>
 <table>
-  <tr>
-    <th>
-      Name
-    </th>
-    <th>
-      Link_1
-    </th>
-    <th>
-      Link_2
-    </th>
-    <th>
-      Link_3
-    </th>
-  </tr>
-  <tbody>
-    <% @customer.locations.each do |location| %>
-      <tr>
-        <td>
-          <%= location.name %>
-        </td>
-        <td>
-          <%= link_to 'View', location_path(location) %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_location_path(location) %>
-        </td>
-        <td>
-          <%= button_to 'Delete', location_path(location), method: :delete %>
-        </td>
-      </tr>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="locations">
+    <%= render @customer.locations %>
   </tbody>
-  <% end %>
 </table>
-<%= link_to 'Add Location', new_location_path(customer_id: @customer.id) %>
+
+<%= turbo_frame_tag "new_location" do%>
+  <%= link_to 'Add Location', new_location_path(customer_id: @customer.id) %>
+<% end %>
+
+<%= turbo_frame_tag "edit_location" %>

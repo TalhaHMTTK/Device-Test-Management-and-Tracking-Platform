@@ -2,15 +2,20 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   def new
-    @device = Device.new
+    @device = Device.new(location_id: params[:location_id])
   end
 
   def create
     @device = Device.new(device_params)
-    if @device.save
-      redirect_to location_path(@device.location)
-    else
-      render :new, status: :unprocessable_entity
+    @location = @device.location
+    respond_to do |format|
+      if @device.save
+        format.html
+        format.turbo_stream { render locals: { :'@location' => @location }}
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @device })}
+      end
     end
   end
 
@@ -19,10 +24,14 @@ class DevicesController < ApplicationController
   def edit; end
 
   def update
-    if @device.update(device_params)
-      redirect_to location_path(@device.location)
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @device.update(device_params)
+        format.html
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @device })}
+      end
     end
   end
 

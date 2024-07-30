@@ -1,0 +1,27 @@
+<%= form_with(model: device, local: true) do |form| %>
+
+  <%= turbo_frame_tag "all_errors" %>
+  
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manufacturer %>
+    <%= form.text_field :manufacturer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.select :model, options_for_select(Device.models.keys.map { |k| [k.capitalize, k] }, @device.model) %>
+  </div>
+
+  <%= form.hidden_field :location_id, value: device.location_id %>
+
+  <%= form.hidden_field :company_id, value: current_user.company_id %>
+
+  <div class="actions">
+    <%= form.submit "Create Device" %>
+  </div>
+<% end %>

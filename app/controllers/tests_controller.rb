@@ -2,15 +2,20 @@ class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
 
   def new
-    @test = Test.new
+    @test = Test.new(device_id: params[:device_id])
   end
 
   def create
     @test = Test.new(test_params)
-    if @test.save
-      redirect_to device_path(@test.device)
-    else
-      render :new, status: :unprocessable_entity
+    @device = @test.device
+    respond_to do |format|
+      if @test.save
+        format.html
+        format.turbo_stream { render locals: { :'@device' => @device }}
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @test })}
+      end
     end
   end
 
@@ -19,10 +24,14 @@ class TestsController < ApplicationController
   def edit; end
 
   def update
-    if @test.update(test_params)
-      redirect_to device_path(@test.device)
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @test.update(test_params)
+        format.html
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @test })}
+      end
     end
   end
 

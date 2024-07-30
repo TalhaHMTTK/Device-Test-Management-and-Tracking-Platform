@@ -1,0 +1,17 @@
+<%= form_with(model: location, local: true) do |form| %>
+
+  <%= turbo_frame_tag "all_errors" %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.hidden_field :customer_id, value: location.customer_id %>
+  
+  <%= form.hidden_field :company_id, value: current_user.company_id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

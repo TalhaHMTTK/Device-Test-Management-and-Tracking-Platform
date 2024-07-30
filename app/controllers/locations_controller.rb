@@ -2,15 +2,20 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def new
-    @location = Location.new
+    @location = Location.new(customer_id: params[:customer_id])
   end
 
   def create
     @location = Location.new(location_params)
-    if @location.save
-      redirect_to customer_path(@location.customer)
-    else
-      render :new, status: :unprocessable_entity
+    @customer = @location.customer
+    respond_to do |format|
+      if @location.save
+        format.html
+        format.turbo_stream { render locals: { :'@customer' => @customer } }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @location })}
+      end
     end
   end
 
@@ -19,10 +24,14 @@ class LocationsController < ApplicationController
   def edit; end
 
   def update
-    if @location.update(location_params)
-      redirect_to customer_path(@location.customer)
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @location.update(location_params)
+        format.html
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @location })}
+      end
     end
   end
 

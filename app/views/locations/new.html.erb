@@ -1,19 +1,4 @@
-<h3>Create Location</h3>
-
-<%= form_with(model: @location, local: true) do |form| %>
-
-  <%= render 'shared/errors', object: @location %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <%= form.hidden_field :customer_id, value: params[:customer_id] %>
-
-  <%= form.hidden_field :company_id, value: current_user.company_id %>
-
-  <div class="actions">
-    <%= form.submit "Create Customer" %>
-  </div>
+<%= turbo_frame_tag "new_location" do %>
+  <h3>Create Location</h3>
+  <%= render 'form', location: @location %>
 <% end %>

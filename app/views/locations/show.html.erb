@@ -7,50 +7,24 @@
 <%= button_to 'Delete', location_path(@location), method: :delete %>
 
 <h4>Devices on <%= @location.name %></h4>
+
 <table>
-  <tr>
-    <th>
-      Name
-    </th>
-    <th>
-      Manufacturer
-    </th>
-    <th>
-      Model
-    </th>
-    <th>
-      Link_1
-    </th>
-    <th>
-      Link_2
-    </th>
-    <th>
-      Link_3
-    </th>
-  </tr>
-  <tbody>
-    <% @location.devices.each do |device| %>
-      <tr>
-        <td>
-          <%= device.name %>
-        </td>
-        <td>
-          <%= device.manufacturer %>
-        </td>
-        <td>
-          <%= device.model %>
-        </td>
-        <td>
-          <%= link_to 'View', device_path(device) %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_device_path(device) %>
-        </td>
-        <td>
-          <%= button_to 'Delete', device_path(device), method: :delete %>
-        </td>
-      </tr>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="devices">
+    <%= render @location.devices %>
   </tbody>
-  <% end %>
 </table>
-<%= link_to 'Add Device', new_device_path(location_id: @location.id) %>
+
+<%= turbo_frame_tag "new_device" do %>
+  <%= link_to 'Add Device', new_device_path(location_id: @location.id) %>
+<% end %>
+
+<%= turbo_frame_tag 'edit_device' %>

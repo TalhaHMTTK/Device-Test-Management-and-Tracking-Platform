@@ -1,25 +1,4 @@
-<h3>Edit Customer</h3>
-
-<%= form_with(model: @customer, local: true) do |form| %>
-
-  <%= render 'shared/errors', object: @customer %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Edit Customer" %>
-  </div>
+<%= turbo_frame_tag "edit_customer" do %>
+  <h3>Edit Customer</h3>
+  <%= render "form", customer: @customer %>
 <% end %>

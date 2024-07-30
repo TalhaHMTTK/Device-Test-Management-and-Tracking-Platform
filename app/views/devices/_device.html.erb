@@ -1,0 +1,11 @@
+<tr id="device_<%= device.id %>">
+  <td><%= device.id %></td>
+  <td><%= device.name %></td>
+  <td><%= device.manufacturer %></td>
+  <td><%= device.model %></td>
+  <td>
+    <%= link_to 'Show', device %>
+    <%= link_to 'Edit', edit_device_path(device), data: { turbo_frame: 'edit_device' } %>
+    <%= link_to 'Destroy', device, data: { turbo_method: :delete } %>
+  </td>
+</tr>

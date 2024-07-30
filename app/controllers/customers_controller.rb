@@ -7,10 +7,14 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    if @customer.save
-      redirect_to @customer
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to @customer }
+        format.turbo_stream
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @customer })}
+      end
     end
   end
 
@@ -19,10 +23,14 @@ class CustomersController < ApplicationController
   def edit; end
 
   def update
-    if @customer.update(customer_params)
-      redirect_to @customer
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @customer.update(customer_params)
+        format.html { redirect_to @customer }
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @customer })}
+      end
     end
   end
 

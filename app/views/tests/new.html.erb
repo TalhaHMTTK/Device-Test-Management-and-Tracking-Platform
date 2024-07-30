@@ -1,31 +1,4 @@
-<h3>New Tests</h3>
-
-<%= form_with(model: @test, local: true) do |form| %>
-
-  <%= render 'shared/errors', object: @test %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, options_for_select(Test.statuses.keys.map { |k| [k.humanize.capitalize, k] }, @test.status )%>
-  </div>
-
-  <div class="field">
-    <%= form.label :result %>
-    <%= form.select :result, options_for_select(Test.results.keys.map { |k| [k.capitalize, k] }, @test.result ) %>
-  </div>
-
-  <%= form.hidden_field :device_id, value: params[:device_id] %>
-
-  <%= form.hidden_field :company_id, value: current_user.company_id %>
-
-  <%= form.hidden_field :user_id, value: current_user.id %>
-
-  <div class="actions">
-    <%= form.submit "Create" %>
-  </div>
+<%= turbo_frame_tag "new_test" do %>
+  <h3>New Tests</h3>
+  <%= render "form", test: @test %>
 <% end %>

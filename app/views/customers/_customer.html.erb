@@ -1,0 +1,11 @@
+<tr id="customer_<%= customer.id %>">
+  <td><%= customer.id %></td>
+  <td><%= customer.name %></td>
+  <td><%= customer.phone %></td>
+  <td><%= customer.address %></td>
+  <td>
+    <%= link_to 'Show', customer %>
+    <%= link_to 'Edit', edit_customer_path(customer), data: { turbo_frame: 'edit_customer' } %>
+    <%= link_to 'Destroy', customer, data: { turbo_method: :delete } %>
+  </td>
+</tr>
