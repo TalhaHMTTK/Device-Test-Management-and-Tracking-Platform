@@ -5,6 +5,6 @@
 <p>Joining Date: <%= @user.created_at.strftime("%B %d, %Y %H:%M")%></p>
 <p>Last Time Profile Updated: <%= @user.updated_at.strftime("%B %d, %Y %H:%M")%></p>
 </br>
-<p><%= link_to 'Edit Info', edit_user_path(@user) %></p>
+<p><%= link_to 'Edit Info', edit_user_registration_path(@user) %></p>
 <%= button_to "Delete", registration_path(@user), form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
 <p><%= link_to 'All Customers', customers_path %></p>
