@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   resources :tests
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root "users#index"
+  root "home#index"
 end
