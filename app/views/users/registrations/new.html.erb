@@ -1,8 +1,19 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
 
+  <%= turbo_frame_tag "all_errors" %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -35,8 +46,13 @@
       </div>
 
       <div class="field">
-        <%= company_fields.label :contact, "Contact Details" %>
-        <%= company_fields.text_field :contact %>
+        <%= company_fields.label :phone, "Contact Details" %>
+        <%= company_fields.text_field :phone %>
+      </div>
+
+      <div class="field">
+        <%= company_fields.label :address, "Address" %>
+        <%= company_fields.text_field :address %>
       </div>
     <% end %>
   </div>

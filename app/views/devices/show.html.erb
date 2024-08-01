@@ -1,22 +1,26 @@
 <button type="button"><%= link_to 'Back', location_path(@device.location) %></button>
 <h3>Device Info</h3>
 <p>ID: <%= @device.id %></p>
-<p>Name:<%= @device.name %></p>
+<p>Type:<%= @device.device_type %></p>
 <p>Model: <%= @device.model %></p>
 <p>Manufacturer<%= @device.manufacturer %></p>
+<p>Max Flow: <%= @device.max_flow %></p>
+<p>Max Pressure: <%= @device.max_pressure %></p>
 <p>Installation Date: <%= @device.created_at.strftime("%B %d, %Y %H:%M") %></p>
 <p>Service Date: <%= @device.updated_at.strftime("%B %d, %Y %H:%M") %></p>
 
 <p><%= link_to 'Edit Device', edit_device_path(@device) %></p>
 <p><%= button_to 'Delete', device_path(@device), method: :delete %></p>
 
-<h4>Tests on <%= @device.name %></h4>
+<h4>Tests on <%= @device.device_type %></h4>
 
 <table>
   <thead>
     <tr>
       <th>ID</th>
       <th>Type</th>
+      <th>Flow Rate</th>
+      <th>Pressure</th>
       <th>Status</th>
       <th>Result</th>
       <th>Actions</th>

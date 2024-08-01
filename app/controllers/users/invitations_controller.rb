@@ -19,6 +19,7 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:invite, keys: [:role, :address, :company_id])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:first_name, :last_name, :role, :address, :company_id])
   end
 
   def set_company

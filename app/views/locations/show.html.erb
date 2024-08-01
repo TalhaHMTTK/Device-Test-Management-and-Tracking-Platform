@@ -2,6 +2,8 @@
 <h3>Location Info</h3>
 
 <p><%= @location.name %></p>
+<p><%= @location.address %></p>
+<p><%= @location.contact_person %></p>
 
 <%= link_to 'Edit', edit_location_path(@location) %>
 <%= button_to 'Delete', location_path(@location), method: :delete %>
@@ -12,9 +14,11 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
+      <th>Type</th>
       <th>Manufacturer</th>
       <th>Model</th>
+      <th>Max Flow</th>
+      <th>Max Pressure</th>
       <th>Actions</th>
     </tr>
   </thead>

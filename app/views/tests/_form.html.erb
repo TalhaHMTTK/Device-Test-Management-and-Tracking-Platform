@@ -8,6 +8,16 @@
   </div>
 
   <div class="field">
+    <%= form.label :flow_rate %>
+    <%= form.number_field :flow_rate, step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pressure %>
+    <%= form.number_field :pressure, step: 0.01  %>
+  </div>
+
+  <div class="field">
     <%= form.label :status %>
     <%= form.select :status, options_for_select(Test.statuses.keys.map { |k| [k.humanize.capitalize, k] }, @test.status )%>
   </div>
@@ -24,6 +34,6 @@
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div class="actions">
-    <%= form.submit "Create" %>
+    <%= form.submit %>
   </div>
 <% end %>
