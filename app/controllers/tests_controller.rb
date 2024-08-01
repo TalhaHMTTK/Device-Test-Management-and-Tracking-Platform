@@ -43,7 +43,7 @@ class TestsController < ApplicationController
   private
 
   def test_params
-    params.require(:test).permit(:name, :status, :result, :device_id, :company_id, :user_id)
+    params.require(:test).permit(:test_type, :status, :result, :device_id, :company_id, :user_id)
   end
 
   def set_test

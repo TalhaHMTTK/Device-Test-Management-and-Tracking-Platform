@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_073846) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_31_101649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.string "contact"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -32,13 +33,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_073846) do
   end
 
   create_table "devices", force: :cascade do |t|
-    t.string "name"
     t.string "manufacturer"
     t.integer "model"
     t.bigint "location_id"
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "device_type"
+    t.float "max_flow"
+    t.float "max_pressure"
     t.index ["company_id"], name: "index_devices_on_company_id"
     t.index ["location_id"], name: "index_devices_on_location_id"
   end
@@ -49,12 +52,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_073846) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.text "contact_person"
     t.index ["company_id"], name: "index_locations_on_company_id"
     t.index ["customer_id"], name: "index_locations_on_customer_id"
   end
 
   create_table "tests", force: :cascade do |t|
-    t.string "name"
     t.integer "status", default: 0
     t.integer "result", default: 0
     t.bigint "device_id"
@@ -62,6 +66,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_073846) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "test_type"
+    t.float "flow_rate"
+    t.float "pressure"
     t.index ["company_id"], name: "index_tests_on_company_id"
     t.index ["device_id"], name: "index_tests_on_device_id"
     t.index ["user_id"], name: "index_tests_on_user_id"
@@ -87,6 +94,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_073846) do
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.boolean "super_admin", default: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
