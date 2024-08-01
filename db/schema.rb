@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_31_101649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "test_type"
+    t.float "flow_rate"
+    t.float "pressure"
     t.index ["company_id"], name: "index_tests_on_company_id"
     t.index ["device_id"], name: "index_tests_on_device_id"
     t.index ["user_id"], name: "index_tests_on_user_id"
