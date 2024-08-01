@@ -52,6 +52,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_31_101649) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.text "contact_person"
     t.index ["company_id"], name: "index_locations_on_company_id"
     t.index ["customer_id"], name: "index_locations_on_customer_id"
   end
