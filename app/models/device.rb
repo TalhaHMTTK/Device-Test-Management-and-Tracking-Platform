@@ -22,6 +22,5 @@ class Device < ApplicationRecord
     spray_nozzle: 13,
     deluge_nozzle: 14
   }
-
-  validates :name, presence: true, length: { minimum: 3 }
+  enum device_type: { fire_pump: 0, hydrant: 1 }
 end

@@ -33,13 +33,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_31_101649) do
   end
 
   create_table "devices", force: :cascade do |t|
-    t.string "name"
     t.string "manufacturer"
     t.integer "model"
     t.bigint "location_id"
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "device_type"
+    t.float "max_flow"
+    t.float "max_pressure"
     t.index ["company_id"], name: "index_devices_on_company_id"
     t.index ["location_id"], name: "index_devices_on_location_id"
   end
