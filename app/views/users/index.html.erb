@@ -1,18 +1,32 @@
-This is index page
-
-<% @users.each do |user| %>
-  <p>Name: <%= "#{user.first_name} #{user.last_name}" %></p>
-  <p>Email: <%= user.email %></p>
-  <p>Role: <%= user.role %></p>
-  <p>Address: <%= user.address %></p>
-  <p><%= link_to "View", user_path(user) %></p>
-<% end %>
+<table class="table">
+  <thead class="bg-secondary">
+    <td>ID</td>
+    <td>Name</td>
+    <td>Email</td>
+    <td>Role</td>
+    <td>Address</td>
+    <td class="text-center" style="width: 20%">Actions</td>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= "#{user.first_name} #{user.last_name}" %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td><%= user.address %></td>
+        <td class="text-center" style="width: 20%">
+          <%= link_to "View", user_path(user), class: "btn btn-success" %>
+          <%= link_to 'Edit', edit_user_registration_path(user), class: "btn btn-info" %>
+          <%= link_to "Delete", registration_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <% if user_signed_in? %>
-  <% if current_user == true_user %>
-    <%= button_to "sign Out", destroy_user_session_path, method: :delete %>
-  <% end %>
-  <div>
+  <div class="d-flex justify-content-center">
     <%= link_to "Add User", new_user_invitation_path, class: "btn btn-primary" %>
   </div>
 <%end%>
