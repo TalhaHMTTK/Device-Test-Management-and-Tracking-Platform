@@ -1,13 +1,11 @@
-<h3>Customer index page</h3>
-
-<table>
-  <thead>
+<table class="table">
+  <thead class="bg-secondary">
     <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Phone</th>
       <th>Address</th>
-      <th>Actions</th>
+      <th class="text-center" style="width: 20%">Actions</th>
     </tr>
   </thead>
   <tbody id="customers">
@@ -16,7 +14,9 @@
 </table>
 
 <%= turbo_frame_tag "new_customer" do %>
-  <%= link_to 'Create Customer', new_customer_path %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Create Customer', new_customer_path, class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 <%= turbo_frame_tag "edit_customer" %>

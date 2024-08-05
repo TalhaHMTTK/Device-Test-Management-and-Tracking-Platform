@@ -1,21 +1,21 @@
-<button type="button"><%= link_to 'Back', location_path(@device.location) %></button>
-<h3>Device Info</h3>
-<p>ID: <%= @device.id %></p>
-<p>Type:<%= @device.device_type %></p>
-<p>Model: <%= @device.model %></p>
-<p>Manufacturer<%= @device.manufacturer %></p>
-<p>Max Flow: <%= @device.max_flow %></p>
-<p>Max Pressure: <%= @device.max_pressure %></p>
-<p>Installation Date: <%= @device.created_at.strftime("%B %d, %Y %H:%M") %></p>
-<p>Service Date: <%= @device.updated_at.strftime("%B %d, %Y %H:%M") %></p>
+<div class="card">
+  <div class="card-header text-center">
+    <h3>Device Info</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">ID: <%= @device.id %></p>
+    <p class="card-text">Model: <%= @device.model %></p>
+    <p class="card-text">Type: <%= @device.device_type %></p>
+    <p class="card-text">Manufacturer: <%= @device.manufacturer %></p>
+    <p class="card-text">Max Flow: <%= @device.max_flow %></p>
+    <p class="card-text">Max Pressure: <%= @device.max_pressure %></p>
+  </div>
+</div>
 
-<p><%= link_to 'Edit Device', edit_device_path(@device) %></p>
-<p><%= button_to 'Delete', device_path(@device), method: :delete %></p>
+<h4 class="text-center">Tests on Device</h4>
 
-<h4>Tests on <%= @device.device_type %></h4>
-
-<table>
-  <thead>
+<table class="table mt-2">
+  <thead class="bg-secondary">
     <tr>
       <th>ID</th>
       <th>Type</th>
@@ -23,7 +23,7 @@
       <th>Pressure</th>
       <th>Status</th>
       <th>Result</th>
-      <th>Actions</th>
+      <th class="text-center" style="width: 20%">Actions</th>
     </tr>
   </thead>
   <tbody id="tests">
@@ -32,7 +32,9 @@
 </table>
 
 <%= turbo_frame_tag "new_test" do %>
-  <%= link_to 'Add Test', new_test_path(device_id: @device.id) %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Add Test', new_test_path(device_id: @device.id), class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 <%= turbo_frame_tag 'edit_test' %>

@@ -1,23 +1,24 @@
-<button type="button"><%= link_to 'Back', customers_path %></button>
-<h3>Customer Info</h3>
-<p>ID: <%= @customer.id %></p>
-<p>Customer Name:<%= @customer.name %></p>
-<p>Phone: <%= @customer.phone %></p>
-<p><%= @customer.address %></p>
-<p>Joining Date: <%= @customer.created_at.strftime("%B %d, %Y %H:%M") %></p>
+<div class="card">
+  <div class="card-header text-center">
+    <h3>Customer Info</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">ID: <%= @customer.id %></p>
+    <p class="card-text">Name: <%= @customer.name %></p>
+    <p class="card-text">Phone: <%= @customer.phone %></p>
+    <p class="card-text">Address: <%= @customer.address %></p>
+  </div>
+</div>
 
-<p><%= link_to 'Edit Customer', edit_customer_path(@customer) %></p>
-<p><%= button_to 'Delete', customer_path(@customer), method: :delete %></p>
-
-<h4>Customer's Locations</h4>
-<table>
-  <thead>
+<h4 class="text-center">Locations of <%= @customer.name %></h4>
+<table class="table mt-2">
+  <thead class="bg-secondary">
     <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Address</th>
       <th>Contact Person</th>
-      <th>Actions</th>
+      <th class="text-center" style="width: 20%">Actions</th>
     </tr>
   </thead>
   <tbody id="locations">
@@ -26,7 +27,9 @@
 </table>
 
 <%= turbo_frame_tag "new_location" do%>
-  <%= link_to 'Add Location', new_location_path(customer_id: @customer.id) %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Add Location', new_location_path(customer_id: @customer.id), class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 <%= turbo_frame_tag "edit_location" %>

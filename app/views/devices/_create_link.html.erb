@@ -1,3 +1,5 @@
 <%= turbo_frame_tag "new_device" do %>
-  <%= link_to 'Add Device', new_device_path(location_id: @location.id) %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Add Device', new_device_path(location_id: @location.id), class: "btn btn-primary" %>
+  </div>
 <% end %>

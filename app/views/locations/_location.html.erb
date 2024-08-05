@@ -3,9 +3,9 @@
   <td><%= location.name %></td>
   <td><%= location.address %></td>
   <td><%= location.contact_person %></td> 
-  <td>
-    <%= link_to "View", location %>
-    <%= link_to "Edit", edit_location_path(location.id), data: { turbo_frame: 'edit_location' } %>
-    <%= link_to "Delete", location, data: { turbo_method: :delete } %>
+  <td class="text-center" style="width: 20%">
+    <%= link_to "View", location, class: "btn btn-success" %>
+    <%= link_to "Edit", edit_location_path(location.id), data: { turbo_frame: 'edit_location' }, class: "btn btn-info"  %>
+    <%= link_to "Delete", location, data: { turbo_method: :delete }, class: "btn btn-danger"  %>
   </td>
 </tr>

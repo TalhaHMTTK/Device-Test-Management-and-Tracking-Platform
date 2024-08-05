@@ -5,9 +5,9 @@
   <td><%= test.pressure %></td>
   <td><%= test.status %></td>
   <td><%= test.result %></td>
-  <td>
-    <%= link_to 'Show', test %>
-    <%= link_to 'Edit', edit_test_path(test), data: { turbo_frame: 'edit_test' } %>
-    <%= link_to 'Destroy', test, data: { turbo_method: :delete } %>
+  <td class="text-center" style="width: 20%">
+    <%= link_to 'Show', test, class: "btn btn-success" %>
+    <%= link_to 'Edit', edit_test_path(test), data: { turbo_frame: 'edit_test' }, class: "btn btn-info" %>
+    <%= link_to 'Destroy', test, data: { turbo_method: :delete }, class: "btn btn-danger" %>
   </td>
 </tr>

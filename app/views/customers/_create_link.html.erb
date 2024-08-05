@@ -1,3 +1,5 @@
 <%= turbo_frame_tag "new_customer" do %>
-  <%= link_to 'Create Customer', new_customer_path %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Create Customer', new_customer_path, class: "btn btn-primary" %>
+  </div>
 <% end %>

@@ -1,13 +1,16 @@
-<button type="button"><%= link_to 'Back', device_path(@test.device) %></button>
-<h3>Test Info</h3>
-<p>ID: <%= @test.id %></p>
-<p>Type:<%= @test.test_type %></p>
-<p>Flow Rate:<%= @test.flow_rate %></p>
-<p>Pressure:<%= @test.pressure %></p>
-<p>Model: <%= @test.status %></p>
-<p>Manufacturer<%= @test.result %></p>
-<p>Creation Date: <%= @test.created_at.strftime("%B %d, %Y %H:%M") %></p>
-<p>Updation Date: <%= @test.updated_at.strftime("%B %d, %Y %H:%M") %></p>
+<div class="card">
+  <div class="card-header text-center">
+    <h3>Test Info</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">ID: <%= @test.id %></p>
+    <p class="card-text">Type:<%= @test.test_type %></p>
+    <p class="card-text">Flow Rate:<%= @test.flow_rate %></p>
+    <p class="card-text">Pressure:<%= @test.pressure %></p>
+    <p class="card-text">Status:<%= @test.status %></p>
+    <p class="card-text">Result:<%= @test.result %></p>
+    <p class="card-text">Updation Date: <%= @test.updated_at.strftime("%B %d, %Y %H:%M") %></p>
+  </div>
+</div>
 
-<p><%= link_to 'Edit Test', edit_test_path(@test) %></p>
-<p><%= button_to 'Delete', device_path(@test), method: :delete %></p>
+<p class= "text-center"><%= link_to 'Edit Test', edit_test_path(@test), class: "btn btn-info" %></p>

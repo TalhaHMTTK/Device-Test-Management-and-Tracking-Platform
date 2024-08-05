@@ -1,3 +1,5 @@
 <%= turbo_frame_tag "new_location" do%>
-  <%= link_to 'Add Location', new_location_path(customer_id: @customer.id) %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Add Location', new_location_path(customer_id: @customer.id), class: "btn btn-primary" %>
+  </div>
 <% end %>
