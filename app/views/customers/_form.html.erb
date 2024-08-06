@@ -1,25 +1,31 @@
-<%= form_with(model: customer, local: true) do |form| %>
+<!doctype html>
+<html lang="en">
 
-  <%= turbo_frame_tag "all_errors" %>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+</head>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<body>
+  <div class="card-body">
+    <%= form_with(model: customer, local: true) do |form| %>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Name</label>
+          <%= form.text_field :name, class: "form-control", id: "exampleInputText1" %>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Phone</label>
+          <%= form.text_field :phone, class: "form-control", id: "exampleInputText1" %>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Address</label>
+          <%= form.text_field :address, class: "form-control", id: "exampleInputText1" %>
+        </div>
+        <%= form.hidden_field :company_id, value: current_user.company_id %>
+        <%= form.submit class: "btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" %>
+    <% end %>
   </div>
+</body>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <%= form.hidden_field :company_id, value: current_user.company_id %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</html>

@@ -1,2 +1,1 @@
 <%= turbo_stream.append 'customers', partial: 'customers/customer', locals: { customer: @customer } %>
-<%= turbo_stream.replace 'new_customer', partial: 'customers/create_link' %>

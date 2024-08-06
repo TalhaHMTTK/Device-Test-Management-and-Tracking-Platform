@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @customer })}
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @customer }), status: :unprocessable_entity }
       end
     end
   end
@@ -29,7 +29,7 @@ class CustomersController < ApplicationController
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @customer })}
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @customer }), status: :unprocessable_entity}
       end
     end
   end

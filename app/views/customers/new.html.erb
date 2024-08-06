@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "new_customer" do%>
-  <h3>New Customer</h3>
-  <%= render "form", customer: @customer %>
+  <%= render 'create_link'%>
+  <%= render 'shared/modal', title: "New Customer", fade_in: true do %>
+    <%= render "form", customer: @customer %>
+  <% end %>
 <% end %>
