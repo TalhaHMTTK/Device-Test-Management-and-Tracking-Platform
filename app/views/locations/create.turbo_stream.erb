@@ -1,2 +1,1 @@
 <%= turbo_stream.append 'locations', partial: 'locations/location', locals: { location: @location } %>
-<%= turbo_stream.replace 'new_location', partial: 'locations/create_link', locals: { :'@customer' => @customer } %>

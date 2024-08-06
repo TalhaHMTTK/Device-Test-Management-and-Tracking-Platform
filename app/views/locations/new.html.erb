@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "new_location" do %>
-  <h3>Create Location</h3>
-  <%= render 'form', location: @location %>
+  <%= render 'create_link' %>
+  <%= render 'shared/modal', title: 'New Location', fade_in: true do %>
+    <%= render 'form', location: @location %>
+  <% end %>
 <% end %>

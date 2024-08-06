@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "edit_location" do %>
-  <h3>Edit Location</h3>
-  <%= render 'form', location: @location %>
+  <%= render 'shared/modal', title: "Edit Location", fade_in: true do %>
+    <%= render "form", location: @location %>
+  <% end %>
 <% end %>
