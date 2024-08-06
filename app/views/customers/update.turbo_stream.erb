@@ -1,1 +1,2 @@
 <%= turbo_stream.replace "customer_#{@customer.id}", partial: 'customers/customer', locals: { customer: @customer } %>
+<%= turbo_stream.update 'flash_messages', partial: 'layouts/flash'%>

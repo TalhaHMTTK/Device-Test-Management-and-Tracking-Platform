@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     respond_to do |format|
       if @customer.save
+        flash[:notice] = 'Customer was created successfully.'
         format.html { redirect_to @customer }
         format.turbo_stream
       else
@@ -25,6 +26,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
+        flash[:notice] = 'Customer was updated successfully.'
         format.html { redirect_to @customer }
         format.turbo_stream
       else
@@ -39,7 +41,11 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @customer.destroy
+    if @customer.destroy
+      flash[:notice] = 'Customer was deleted successfully.'
+    else
+      flash[:alert] = 'Customer not deleted'
+    end
     redirect_to customers_path
   end
 

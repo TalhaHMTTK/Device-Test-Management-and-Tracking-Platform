@@ -10,6 +10,7 @@ class TestsController < ApplicationController
     @device = @test.device
     respond_to do |format|
       if @test.save
+        flash[:notice] = 'Test was created successfully'
         format.html
         format.turbo_stream { render locals: { :'@device' => @device }}
       else
@@ -26,6 +27,7 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
+        flash[:notice] = 'Test was updated successfully'
         format.html
         format.turbo_stream
       else
@@ -36,7 +38,11 @@ class TestsController < ApplicationController
   end
 
   def destroy
-    @test.destroy
+    if @test.destroy
+      flash[:notice] = 'Test was deleted successfully'
+    else
+      flash[:notice] = 'Test was not deleted'
+    end
     redirect_to device_path(@test.device)
   end
 

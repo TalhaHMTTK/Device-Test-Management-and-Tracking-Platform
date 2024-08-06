@@ -1,1 +1,2 @@
 <%= turbo_stream.replace "test_#{ @test.id }", partial: 'tests/test', locals: { test: @test } %>
+<%= turbo_stream.update 'flash_messages', partial: 'layouts/flash'%>

@@ -13,6 +13,7 @@
   <body>
     <%= render 'layouts/navbar'%>
     <%= turbo_frame_tag "modal", target: "_top" %>
+    <%= render 'layouts/flash' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

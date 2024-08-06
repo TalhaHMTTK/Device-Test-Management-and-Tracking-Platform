@@ -1,0 +1,13 @@
+<turbo-frame id="flash_messages">
+  <% flash.each do |key, message| %>
+    <% alert_type = case key.to_sym
+                   when :notice then 'alert-success'
+                   when :alert then 'alert-danger'
+                   else 'alert-info'
+                   end %>
+    <div class="alert <%= alert_type %> alert-dismissible fade show" role="alert">
+      <%= message %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+</turbo-frame>

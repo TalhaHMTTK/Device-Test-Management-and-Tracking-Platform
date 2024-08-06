@@ -1,1 +1,2 @@
 <%= turbo_stream.replace "device_#{ @device.id }", partial: 'devices/device', locals: { device: @device } %>
+<%= turbo_stream.update 'flash_messages', partial: 'layouts/flash'%>

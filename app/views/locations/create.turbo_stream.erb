@@ -1,1 +1,2 @@
 <%= turbo_stream.append 'locations', partial: 'locations/location', locals: { location: @location } %>
+<%= turbo_stream.update 'flash_messages', partial: 'layouts/flash'%>

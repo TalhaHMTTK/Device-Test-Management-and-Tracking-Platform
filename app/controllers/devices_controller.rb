@@ -10,6 +10,7 @@ class DevicesController < ApplicationController
     @location = @device.location
     respond_to do |format|
       if @device.save
+        flash[:notice] = 'Device was created successfully'
         format.html
         format.turbo_stream { render locals: { :'@location' => @location }}
       else
@@ -26,6 +27,7 @@ class DevicesController < ApplicationController
   def update
     respond_to do |format|
       if @device.update(device_params)
+      flash[:notice] = 'Device was updated successfully'
         format.html
         format.turbo_stream
       else
@@ -36,7 +38,11 @@ class DevicesController < ApplicationController
   end
 
   def destroy
-    @device.destroy
+    if @device.destroy
+      flash[:notice] = 'Device was deleted successfully'
+    else
+      flash[:alert] = 'Device was not deleted'
+    end
     redirect_to location_path(@device.location)
   end
 
