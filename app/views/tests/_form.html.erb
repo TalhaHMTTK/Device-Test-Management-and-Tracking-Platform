@@ -1,39 +1,41 @@
-<%= form_with(model: test, local: true) do |form| %>
+<!doctype html>
+<html lang="en">
 
-  <%= turbo_frame_tag "all_errors" %>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+</head>
 
-  <div class="field">
-    <%= form.label :test_type %>
-    <%= form.select :test_type, options_for_select(Test.test_types.keys.map { |k| [k.humanize.capitalize, k] }, @test.test_type )%>
+<body>
+  <div class="card-body">
+    <%= form_with(model: test, local: true) do |form| %>
+      <div class="mb-3">
+        <label for="device_type" class="form-label">Type</label>
+        <%= form.select :test_type, options_for_select(Test.test_types.keys.map { |k| [k.humanize.capitalize, k] }, @test.test_type ), {}, class: "form-select" %>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Flow Rate</label>
+        <%= form.number_field :flow_rate, step: 0.01, class: "form-control", id: "exampleInputText1" %>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Pressure</label>
+        <%= form.number_field :pressure, step: 0.01, class: "form-control", id: "exampleInputText1" %>
+      </div>
+      <div class="mb-3">
+        <label for="device_type" class="form-label">Status</label>
+        <%= form.select :status, options_for_select(Test.statuses.keys.map { |k| [k.humanize.capitalize, k] }, @test.status ), {}, class: "form-select" %>
+      </div>
+      <div class="mb-3">
+        <label for="device_type" class="form-label">Result</label>
+        <%= form.select :result, options_for_select(Test.results.keys.map { |k| [k.capitalize, k] }, @test.result ), {}, class: "form-select" %>
+      </div>
+      <%= form.hidden_field :device_id, value: test.device_id %>
+      <%= form.hidden_field :company_id, value: current_user.company_id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit class: "btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" %>
+    <% end %>
   </div>
+</body>
 
-  <div class="field">
-    <%= form.label :flow_rate %>
-    <%= form.number_field :flow_rate, step: 0.01 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pressure %>
-    <%= form.number_field :pressure, step: 0.01  %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, options_for_select(Test.statuses.keys.map { |k| [k.humanize.capitalize, k] }, @test.status )%>
-  </div>
-
-  <div class="field">
-    <%= form.label :result %>
-    <%= form.select :result, options_for_select(Test.results.keys.map { |k| [k.capitalize, k] }, @test.result ) %>
-  </div>
-
-  <%= form.hidden_field :device_id, value: test.device_id %>
-
-  <%= form.hidden_field :company_id, value: current_user.company_id %>
-
-  <%= form.hidden_field :user_id, value: current_user.id %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</html>

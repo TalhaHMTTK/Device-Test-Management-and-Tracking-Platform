@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "edit_test" do %>
-  <h3>Edit Test</h3>
-  <%= render 'form', test: @test %>
+  <%= render 'shared/modal', title: "Edit Test", fade_in: true do %>
+    <%= render "form", test: @test %>
+  <% end %>
 <% end %>

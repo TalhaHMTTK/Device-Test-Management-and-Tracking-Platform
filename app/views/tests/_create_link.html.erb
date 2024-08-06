@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "new_test" do %>
   <div class="d-flex justify-content-center">
-    <%= link_to 'Add Test', new_test_path(device_id: @device.id), class: "btn btn-primary" %>
+    <%= link_to 'Add Test', new_test_path(device_id: @test.device_id), class: "btn btn-primary" %>
   </div>
 <% end %>

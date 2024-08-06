@@ -14,7 +14,7 @@ class TestsController < ApplicationController
         format.turbo_stream { render locals: { :'@device' => @device }}
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @test })}
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @test }), status: :unprocessable_entity }
       end
     end
   end
@@ -30,7 +30,7 @@ class TestsController < ApplicationController
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @test })}
+        format.turbo_stream { render turbo_stream: turbo_stream.update("all_errors", partial: "shared/errors", locals: { object: @test }), status: :unprocessable_entity }
       end
     end
   end

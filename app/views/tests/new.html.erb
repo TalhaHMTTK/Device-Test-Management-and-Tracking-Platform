@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "new_test" do %>
-  <h3>New Tests</h3>
-  <%= render "form", test: @test %>
+  <%= render 'create_link'%>
+  <%= render 'shared/modal', title: "New Test", fade_in: true do %>
+    <%= render "form", test: @test %>
+  <% end %>
 <% end %>
