@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "new_device" do %>
-  <h3>New Device</h3>
-  <%= render 'form', device: @device %>
+  <%= render 'create_link'%>
+  <%= render 'shared/modal', title: "New Device", fade_in: true do %>
+    <%= render "form", device: @device %>
+  <% end %>
 <% end %>

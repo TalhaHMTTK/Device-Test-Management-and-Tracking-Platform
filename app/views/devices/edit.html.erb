@@ -1,4 +1,5 @@
 <%= turbo_frame_tag 'edit_device' do %>
-  <h3>Edit Device</h3>
-  <%= render 'form', device: @device %>
+  <%= render 'shared/modal', title: "Edit Device", fade_in: true do %>
+    <%= render "form", device: @device %>
+  <% end %>
 <% end %>

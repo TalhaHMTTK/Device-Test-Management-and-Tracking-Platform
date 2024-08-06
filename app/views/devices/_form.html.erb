@@ -1,37 +1,40 @@
-<%= form_with(model: device, local: true) do |form| %>
+<!doctype html>
+<html lang="en">
 
-  <%= turbo_frame_tag "all_errors" %>
-  
-  <div class="field">
-    <%= form.label :device_type %>
-    <%= form.select :device_type, options_for_select(Device.device_types.keys.map { |k| [k.humanize.capitalize, k] }, @device.device_type) %>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+</head>
+
+<body>
+  <div class="card-body">
+    <%= form_with(model: device, local: true) do |form| %>
+      <div class="mb-3">
+        <label for="device_type" class="form-label">Type</label>
+        <%= form.select :device_type, options_for_select(Device.device_types.keys.map { |k| [k.humanize.capitalize, k] }, @device.device_type), {}, class: "form-select" %>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">manufacturer</label>
+        <%= form.text_field :manufacturer, class: "form-control", id: "exampleInputText1" %>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Model</label>
+        <%= form.select :model, options_for_select(Device.models.keys.map { |k| [k.capitalize, k] }, @device.model), {}, class: "form-select"  %>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Max Flow</label>
+        <%= form.number_field :max_flow, step: 0.01, class: "form-control", id: "exampleInputText1" %>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Max Pressure</label>
+        <%= form.number_field :max_pressure, step: 0.01, class: "form-control", id: "exampleInputText1" %>
+      </div>
+      <%= form.hidden_field :location_id, value: device.location_id %>
+      <%= form.hidden_field :company_id, value: current_user.company_id %>   
+      <%= form.submit class: "btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" %>
+    <% end %>
   </div>
+</body>
 
-  <div class="field">
-    <%= form.label :manufacturer %>
-    <%= form.text_field :manufacturer %>
-  </div>
-
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.select :model, options_for_select(Device.models.keys.map { |k| [k.capitalize, k] }, @device.model) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :max_flow %>
-    <%= form.number_field :max_flow, step: 0.01  %>
-  </div>
-
-  <div class="field">
-    <%= form.label :max_pressure %>
-    <%= form.number_field :max_pressure, step: 0.01  %>
-  </div>
-
-  <%= form.hidden_field :location_id, value: device.location_id %>
-
-  <%= form.hidden_field :company_id, value: current_user.company_id %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</html>

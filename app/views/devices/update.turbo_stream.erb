@@ -1,2 +1,1 @@
 <%= turbo_stream.replace "device_#{ @device.id }", partial: 'devices/device', locals: { device: @device } %>
-<%= turbo_stream.update "edit_device" %>
