@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
     @customer = @location.customer
     respond_to do |format|
       if @location.save
-        flash[:notice] = 'Location was created successfully.'
+        flash[:notice] = 'Location created successfully.'
         format.html
         format.turbo_stream { render locals: { :'@customer' => @customer } }
       else
@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        flash[:notice] = 'Location was updated successfully.'
+        flash[:notice] = 'Location updated successfully.'
         format.html
         format.turbo_stream
       else
@@ -39,9 +39,9 @@ class LocationsController < ApplicationController
 
   def destroy
     if @location.destroy
-      flash[:notice] = 'Location was deleted successfully.'
+      flash[:notice] = 'Location deleted successfully.'
     else
-      flash[:alert] = 'Location was not deleted.'
+      flash[:alert] = 'Location not deleted.'
     end
     redirect_to customer_path(@location.customer)
   end
