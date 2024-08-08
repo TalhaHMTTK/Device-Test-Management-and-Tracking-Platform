@@ -12,4 +12,8 @@ class Test < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["company_id", "device_id", "id", "result", "status", "test_type", "user_id"]
   end
+
+  def information
+    "#{test_type.capitalize} test on #{device.device_type} (model: #{device.model}) by #{user.first_name}"
+  end
 end

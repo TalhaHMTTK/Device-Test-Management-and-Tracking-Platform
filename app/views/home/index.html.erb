@@ -1,15 +1,105 @@
-<h1>Home#index</h1>
-<p>This is your home page. You can navigate to other sections from here.</p>
-<% if !user_signed_in? %>
-  <%= link_to 'Sign In', new_user_session_path %> |
-  <%= link_to 'Sign Up', new_user_registration_path %>
-<% end %>
-
-<% if user_signed_in? %>
-  <% if current_user == true_user %>
-    <%= button_to "sign Out", destroy_user_session_path, method: :delete %>
-  <% end %>
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+  data-sidebar-position="fixed" data-header-position="fixed">
   <div>
-    <%= link_to "Company Dashboard" , users_path %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 mb-1">
+          <div class="card">
+            <div class="card-body" style="padding: 2rem;">
+              <h1 class="text-center" style="font-size: 2.5rem; font-weight: bold; color: #333;">Device Test Management & Tracking Platform</h1>
+              <p class="text-center" style="font-size: 1.2rem; color: #666;">
+                Our platform helps you efficiently manage and track your device tests. Stay on top of recent test activities and review past results to ensure your equipment is performing at its best.
+                <br><br>
+                <strong class="d-block text-center" style="font-size: 1.5rem; color: #333;">Features</strong>
+                <ul class="list-unstyled" style="font-size: 1rem; color: #666;">
+                  <li class="text-center">Create and manage test records with details such as device, company, and user information.</li>
+                  <li class="text-center">Monitor test status (e.g., planned, working, completed) to track progress.</li>
+                  <li class="text-center">Record test results along with flow rate and pressure to analyze device performance.</li>
+                </ul>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h5 class="card-title fw-semibold">Recent Tests</h5>
+                </div>
+                <% @recent_tests.each do |test| %>
+                <ul class="timeline-widget mb-0 position-relative mb-n5">
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-dark flex-shrink-0 text-end"><%= test.created_at.strftime("%B %d, %Y %H:%M") %></div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-dark mt-n1"><%= test.information %></div>
+                    </li>
+                  </ul>
+                  </br>
+                  </br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Last Year Completed Test</h5>
+                <div class="table-responsive">
+                  <table class="table text-nowrap mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Id</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Company</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Flow Rate</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Pressure</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Result</h6>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @completed_tests.each do |test| %>
+                        <tr>
+                          <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= test.id %></h6></td>
+                          <td class="border-bottom-0">
+                              <h6 class="fw-semibold mb-1"><%= test.company.name %></h6>
+                              <span class="fw-normal"><%= test.company.address %></span>                          
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-secondary rounded-3 fw-semibold"><%= test.flow_rate %></span>
+                            </div>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-success rounded-3 fw-semibold"><%= test.pressure %></span>
+                            </div>
+                          </td>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 fs-4"><%= test.result %></h6>
+                          </td>
+                        </tr> 
+                      <% end %>                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
   </div>
-<%end%>
+</div>
