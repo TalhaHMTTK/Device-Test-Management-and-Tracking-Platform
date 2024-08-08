@@ -1,62 +1,47 @@
-<!doctype html>
-<html lang="en">
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+  data-sidebar-position="fixed" data-header-position="fixed">
+  <div
+    class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center w-100">
+      <div class="row justify-content-center w-100">
+        <div class="col-md-8 col-lg-6 col-xxl-3">
+          <div class="card mb-0">
+            <div class="card-body">
+              <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+              </a>
+              <h4><%= t "devise.invitations.edit.header" %></h4>
+              <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
+                <%= f.hidden_field :invitation_token, readonly: true %>
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputtext1" class="form-label">First Name</label>
+                    <%= f.text_field :first_name, autofocus: true, class: "form-control", id: "exampleInputtext1", 'aria-describedby': "textHelp"  %>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputtext1" class="form-label">Last Name</label>
+                    <%= f.text_field :last_name, autofocus: true, class: "form-control", id: "exampleInputtext1", 'aria-describedby': "textHelp"  %>
+                  </div>
+                  <% if f.object.class.require_password_on_accepting %>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
-</head>
-
-<body>
-  <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <div
-      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-      <div class="d-flex align-items-center justify-content-center w-100">
-        <div class="row justify-content-center w-100">
-          <div class="col-md-8 col-lg-6 col-xxl-3">
-            <div class="card mb-0">
-              <div class="card-body">
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
-                </a>
-                <h4><%= t "devise.invitations.edit.header" %></h4>
-                <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
-                  <%= render "users/shared/error_messages", resource: resource %>
-                  <%= f.hidden_field :invitation_token, readonly: true %>
-                  <form>
                     <div class="mb-3">
-                      <label for="exampleInputtext1" class="form-label">First Name</label>
-                      <%= f.text_field :first_name, autofocus: true, class: "form-control", id: "exampleInputtext1", 'aria-describedby': "textHelp"  %>
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <%= f.password_field :password, class: "form-control", id: "exampleInputPassword1" %>
                     </div>
-                    <div class="mb-3">
-                      <label for="exampleInputtext1" class="form-label">Last Name</label>
-                      <%= f.text_field :last_name, autofocus: true, class: "form-control", id: "exampleInputtext1", 'aria-describedby': "textHelp"  %>
+
+                    <div class="mb-4">
+                      <label for="exampleInputPassword1" class="form-label">Password Confirmation</label>
+                      <%= f.password_field :password_confirmation, class: "form-control", id: "exampleInputPassword1"  %>
                     </div>
-                    <% if f.object.class.require_password_on_accepting %>
-
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <%= f.password_field :password, class: "form-control", id: "exampleInputPassword1" %>
-                      </div>
-
-                      <div class="mb-4">
-                        <label for="exampleInputPassword1" class="form-label">Password Confirmation</label>
-                        <%= f.password_field :password_confirmation, class: "form-control", id: "exampleInputPassword1"  %>
-                      </div>
-                    <% end %>
-                    <%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" %>
-                  </form>
-                <% end %>
-              </div>
+                  <% end %>
+                  <%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" %>
+                </form>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</body>
-
-</html>
+</div>
