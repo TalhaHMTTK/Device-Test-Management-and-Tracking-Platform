@@ -5,6 +5,8 @@ ActiveAdmin.register Customer do
   permit_params :name, :phone, :address
   filter :address
   filter :company_id
+  filter :id
+  filter :name
 
   form do |f|
     f.inputs 'Customer Details' do
