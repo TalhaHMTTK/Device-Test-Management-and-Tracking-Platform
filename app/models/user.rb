@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["company_id", "email", "role", "id"]
   end
+
+  def full_name
+    "#{first_name} #{last_name}".titleize
+  end
 end
