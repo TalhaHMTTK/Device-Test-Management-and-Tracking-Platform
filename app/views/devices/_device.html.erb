@@ -1,8 +1,8 @@
 <tr id="device_<%= device.id %>">
   <td><%= device.id %></td>
-  <td><%= device.device_type %></td>
+  <td><%= device.device_type.titleize %></td>
   <td><%= device.manufacturer %></td>
-  <td><%= device.model %></td>
+  <td><%= device.model.titleize %></td>
   <td><%= device.max_flow %></td>
   <td><%= device.max_pressure %></td>
   <td class="text-center" style="width: 20%">

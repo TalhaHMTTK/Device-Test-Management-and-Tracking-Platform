@@ -5,8 +5,8 @@
   </div>
   <div class="card-body">
     <p class="card-text">ID: <%= @device.id %></p>
-    <p class="card-text">Model: <%= @device.model %></p>
-    <p class="card-text">Type: <%= @device.device_type %></p>
+    <p class="card-text">Model: <%= @device.model.titleize %></p>
+    <p class="card-text">Type: <%= @device.device_type.titleize %></p>
     <p class="card-text">Manufacturer: <%= @device.manufacturer %></p>
     <p class="card-text">Max Flow: <%= @device.max_flow %></p>
     <p class="card-text">Max Pressure: <%= @device.max_pressure %></p>

@@ -1,10 +1,10 @@
 <tr id="test_<%= test.id %>">
   <td><%= test.id %></td>
-  <td><%= test.test_type %></td>
+  <td><%= test.test_type.titleize %></td>
   <td><%= test.flow_rate %></td>
   <td><%= test.pressure %></td>
-  <td><%= test.status %></td>
-  <td><%= test.result %></td>
+  <td><%= test.status.titleize %></td>
+  <td><%= test.result.titleize %></td>
   <td class="text-center" style="width: 20%">
     <%= link_to 'Show', test, class: "btn btn-success" %>
     <%= link_to 'Edit', edit_test_path(test), data: { turbo_frame: 'edit_test' }, class: "btn btn-info" %>

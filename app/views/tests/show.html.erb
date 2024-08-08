@@ -4,11 +4,11 @@
   </div>
   <div class="card-body">
     <p class="card-text">ID: <%= @test.id %></p>
-    <p class="card-text">Type:<%= @test.test_type %></p>
+    <p class="card-text">Type:<%= @test.test_type.titleize %></p>
     <p class="card-text">Flow Rate:<%= @test.flow_rate %></p>
     <p class="card-text">Pressure:<%= @test.pressure %></p>
-    <p class="card-text">Status:<%= @test.status %></p>
-    <p class="card-text">Result:<%= @test.result %></p>
+    <p class="card-text">Status:<%= @test.status.titleize %></p>
+    <p class="card-text">Result:<%= @test.result.titleize %></p>
     <p class="card-text">Updation Date: <%= @test.updated_at.strftime("%B %d, %Y %H:%M") %></p>
   </div>
 </div>
