@@ -1,6 +1,7 @@
 class Users::InvitationsController < Devise::InvitationsController
   before_action :configure_permitted_parameters
   before_action :set_company, only: [:new, :create]
+  before_action :authorize_invite, only: [:new, :create]
 
   def new
     super
@@ -24,5 +25,9 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def set_company
     @company_id = current_user.company_id
+  end
+
+  def authorize_invite
+    authorize User, :invite?
   end
 end

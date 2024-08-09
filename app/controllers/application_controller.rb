@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   impersonates :user
   set_current_tenant_through_filter
   before_action :set_tenant, if: -> { current_user && !skip_tenant_for_controller? }, unless: :active_admin_controller?
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
@@ -25,5 +27,10 @@ class ApplicationController < ActionController::Base
 
   def skip_tenant_for_controller?
     controller_name == 'home' # Check if the current controller is 'home'
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to view this page."
+    redirect_to(request.referrer || root_path)
   end
 end
