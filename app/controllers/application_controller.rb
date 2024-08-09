@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   impersonates :user
   set_current_tenant_through_filter
-  before_action :set_tenant, if: -> { current_user }
+  before_action :set_tenant, if: -> { current_user }, unless: :active_admin_controller?
 
   protected
 
@@ -17,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def set_tenant
     set_current_tenant(current_user.company)
+  end
+
+  def active_admin_controller?
+    is_a?(ActiveAdmin::BaseController)
   end
 end

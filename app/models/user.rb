@@ -10,4 +10,8 @@ class User < ApplicationRecord
   enum role: { tester: 0, admin: 1 }
 
   accepts_nested_attributes_for :company
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["company_id", "email", "role", "id"]
+  end
 end

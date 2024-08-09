@@ -23,4 +23,8 @@ class Device < ApplicationRecord
     deluge_nozzle: 14
   }
   enum device_type: { fire_pump: 0, hydrant: 1 }
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["company_id", "device_type", "id", "location_id", "manufacturer", "model"]
+  end
 end

@@ -8,4 +8,8 @@ class Test < ApplicationRecord
   enum :test_type, { churn: 0, acceptance: 1, annual: 2 }
   enum :status, { scheduled: 0, in_progress: 1, completed: 2 }
   enum :result, { pass: 0, fail: 1 }
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["company_id", "device_id", "id", "result", "status", "test_type", "user_id"]
+  end
 end

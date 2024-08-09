@@ -74,3 +74,7 @@ gem 'devise_invitable'
 gem 'acts_as_tenant'
 
 gem "pretender"
+
+gem 'activeadmin'
+
+gem 'sassc-rails'
