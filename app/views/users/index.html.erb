@@ -30,8 +30,3 @@
     <%= link_to "Add User", new_user_invitation_path, class: "btn btn-primary" %>
   </div>
 <%end%>
-
-<% if current_user != true_user %>
-  You (<%= true_user.email %>) are signed in as <%= current_user.email %>
-  <%= button_to "Back to admin", stop_impersonating_users_path, data: {turbo: false} %>
-<% end %>

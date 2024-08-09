@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def stop_impersonating
     stop_impersonating_user
-    redirect_to super_admin_all_users_path
+    redirect_to admin_users_path
   end
 
   def show; end
