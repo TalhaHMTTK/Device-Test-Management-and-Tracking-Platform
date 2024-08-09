@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   before_action :set_tenant, if: -> { current_user && !skip_tenant_for_controller? }, unless: :active_admin_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  module Api
+    class ApplicationController < ActionController::API
+    end
+  end
+  
   protected
 
   def configure_permitted_parameters

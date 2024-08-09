@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :devices
   resources :tests
   get "up" => "rails/health#show", as: :rails_health_check
-
+  namespace :api do
+    resources :tests
+  end
   root "home#index"
 end
