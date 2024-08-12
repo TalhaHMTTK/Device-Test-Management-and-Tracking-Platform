@@ -6,6 +6,7 @@ ActiveAdmin.register Location do
   filter :customer_id
   filter :company_id
   filter :id
+  filter :name
 
   form do |f|
     f.inputs 'Location Details' do
