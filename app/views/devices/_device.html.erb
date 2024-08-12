@@ -7,7 +7,9 @@
   <td><%= device.max_pressure %></td>
   <td class="text-center" style="width: 20%">
     <%= link_to 'Show', device, class: "btn btn-success" %>
-    <%= link_to 'Edit', edit_device_path(device), data: { turbo_frame: 'edit_device' }, class: "btn btn-info" %>
-    <%= link_to 'Destroy', device, data: { turbo_method: :delete }, class: "btn btn-danger" %>
-  </td>
+    <% if current_user.admin? || device.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_device_path(device), data: { turbo_frame: 'edit_device' }, class: "btn btn-info" %>
+      <%= link_to 'Destroy', device, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+    <% end %>
+    </td>
 </tr>

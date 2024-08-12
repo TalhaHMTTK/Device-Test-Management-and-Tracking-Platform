@@ -17,15 +17,17 @@
         <td><%= user.address %></td>
         <td class="text-center" style="width: 20%">
           <%= link_to "View", user_path(user), class: "btn btn-success" %>
-          <%= link_to 'Edit', edit_user_registration_path(user), class: "btn btn-info" %>
+        <% if current_user.admin? || user.id == current_user.id %>
+          <%= link_to 'Edit', edit_user_registration_path(user_id: user.id), class: "btn btn-info" %>
           <%= link_to "Delete", registration_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.admin?%>
   <div class="d-flex justify-content-center">
     <%= link_to "Add User", new_user_invitation_path, class: "btn btn-primary" %>
   </div>

@@ -78,3 +78,5 @@ gem "pretender"
 gem 'activeadmin'
 
 gem 'sassc-rails'
+
+gem "pundit", "~> 2.3"

@@ -3,6 +3,7 @@ class Device < ApplicationRecord
 
   belongs_to :location
   belongs_to :company
+  belongs_to :user
   has_many :tests
 
   enum model: {
@@ -25,6 +26,6 @@ class Device < ApplicationRecord
   enum device_type: { fire_pump: 0, hydrant: 1 }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["company_id", "device_type", "id", "location_id", "manufacturer", "model"]
+    ["company_id", "device_type", "id", "location_id", "manufacturer", "model", "user_id"]
   end
 end

@@ -22,6 +22,7 @@
     </div>
     <%= form.hidden_field :location_id, value: device.location_id %>
     <%= form.hidden_field :company_id, value: current_user.company_id %>   
+    <%= form.hidden_field :user_id, value: current_user.id %> 
     <%= form.submit class: "btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" %>
   <% end %>
 </div>

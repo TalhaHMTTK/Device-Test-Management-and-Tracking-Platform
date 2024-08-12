@@ -22,9 +22,12 @@ class DevicesController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize @device
+  end
 
   def update
+    authorize @device
     respond_to do |format|
       if @device.update(device_params)
       flash[:notice] = 'Device updated successfully'
@@ -38,6 +41,7 @@ class DevicesController < ApplicationController
   end
 
   def destroy
+    authorize @device
     if @device.destroy
       flash[:notice] = 'Device deleted successfully'
     else
@@ -49,7 +53,7 @@ class DevicesController < ApplicationController
   private
 
   def device_params
-    params.require(:device).permit(:device_type, :manufacturer, :model, :max_flow, :max_pressure, :location_id, :company_id)
+    params.require(:device).permit(:device_type, :manufacturer, :model, :max_flow, :max_pressure, :location_id, :company_id, :user_id)
   end
 
   def set_device

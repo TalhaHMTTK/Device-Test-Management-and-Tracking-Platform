@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   belongs_to :company
   has_many :tests
+  has_many :devices
 
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

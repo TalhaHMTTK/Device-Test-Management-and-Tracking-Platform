@@ -22,9 +22,12 @@ class TestsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize @test
+  end
 
   def update
+    authorize @test
     respond_to do |format|
       if @test.update(test_params)
         flash[:notice] = 'Test updated successfully'
@@ -38,6 +41,7 @@ class TestsController < ApplicationController
   end
 
   def destroy
+    authorize @test
     if @test.destroy
       flash[:notice] = 'Test deleted successfully'
     else

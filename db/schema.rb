@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_31_101649) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_125902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,8 +42,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_31_101649) do
     t.integer "device_type"
     t.float "max_flow"
     t.float "max_pressure"
+    t.bigint "user_id"
     t.index ["company_id"], name: "index_devices_on_company_id"
     t.index ["location_id"], name: "index_devices_on_location_id"
+    t.index ["user_id"], name: "index_devices_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|

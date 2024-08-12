@@ -5,6 +5,7 @@ ActiveAdmin.register Device do
   permit_params :manufacturer, :model, :device_type, :max_flow, :max_pressure
   filter :company_id
   filter :location_id
+  filter :user_id
   filter :device_type
   filter :manufacturer
   filter :model

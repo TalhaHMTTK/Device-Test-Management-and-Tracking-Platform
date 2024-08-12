@@ -25,6 +25,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+    @user = User.find(params[:user_id])
+    authorize @user
+    super
+  end
+
   private
 
   def sign_up_params
