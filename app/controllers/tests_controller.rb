@@ -45,7 +45,7 @@ class TestsController < ApplicationController
     if @test.destroy
       flash[:notice] = 'Test deleted successfully'
     else
-      flash[:notice] = 'Test not deleted'
+      flash[:notice] = 'Failed to delete'
     end
     redirect_to device_path(@test.device)
   end

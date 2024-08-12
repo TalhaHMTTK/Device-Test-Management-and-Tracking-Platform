@@ -41,7 +41,7 @@ class LocationsController < ApplicationController
     if @location.destroy
       flash[:notice] = 'Location deleted successfully.'
     else
-      flash[:alert] = 'Location not deleted.'
+      flash[:alert] = 'Failed to delete.'
     end
     redirect_to customer_path(@location.customer)
   end

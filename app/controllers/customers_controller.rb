@@ -44,7 +44,7 @@ class CustomersController < ApplicationController
     if @customer.destroy
       flash[:notice] = 'Customer deleted successfully.'
     else
-      flash[:alert] = 'Customer not deleted'
+      flash[:alert] = 'Failed to delete'
     end
     redirect_to customers_path
   end

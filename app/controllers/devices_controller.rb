@@ -45,7 +45,7 @@ class DevicesController < ApplicationController
     if @device.destroy
       flash[:notice] = 'Device deleted successfully'
     else
-      flash[:alert] = 'Device not deleted'
+      flash[:alert] = 'Failed to delete'
     end
     redirect_to location_path(@device.location)
   end
