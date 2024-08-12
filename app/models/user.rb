@@ -16,7 +16,7 @@ class User < ApplicationRecord
     ["company_id", "email", "role", "id"]
   end
 
-  def full_name
+  def display_name
     "#{first_name} #{last_name}".titleize
   end
 end
