@@ -16,6 +16,17 @@ Rails.application.routes.draw do
   resources :locations
   resources :devices
   resources :tests
+
+  namespace :api do
+    resources :tests, only: [:index, :show] do
+      collection do
+        get 'last_month'
+        get 'completed_tests'
+        get 'between_dates'
+      end
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "home#index"
