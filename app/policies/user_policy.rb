@@ -9,7 +9,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin_or_same_user?
+    user.admin? || record.id == user.id
   end
 
   def active_admin_access?
